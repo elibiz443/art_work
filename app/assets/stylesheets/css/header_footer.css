@@ -20,6 +20,11 @@ header ul li {
   border-radius: 10px;
 }
 
+header ul li:hover {
+  background-color: #64baf4;
+  color: #0a315a;
+}
+
 /*Footer Section*/
 footer {
   background-color: #64baf4;

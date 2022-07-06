@@ -41,3 +41,70 @@ button {
   min-height: calc(90vh - 40px);
   background-color: #D0D3D4;
 }
+
+.center {
+  display: block;
+  margin: 4vw auto 1vw auto;
+  width: 95%;
+  display: flex;
+}
+
+.edit-section {
+  background-color: #5D6D7E;
+  padding: 1vw;
+  margin: 1vw 2vw 1vw 2vw;
+  color: #F4F6F6;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: 0.4rem;
+}
+
+.edit-section li {
+  background-color: #154360;
+  margin-bottom: 1rem;
+  padding: 0.4rem 1rem 0.4rem 1rem;
+  border-radius: 0.3rem;
+}
+
+.edit-section li:hover {
+  background-color: #F4F6F6;
+  color: #154360;
+}
+
+.info-section {
+  background-color: #95A5A6;
+  padding: 1vw;
+  margin: 1vw 2vw 1vw 2vw;
+  color: #F4F6F6;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  border-radius: 0.4rem;
+}
+
+.info-section li {
+  margin-bottom: 0.8rem;
+}
+
+.btn {
+  font-size: 0.7rem !important;
+}
+
+.top-btn {
+  margin-bottom: 0.5rem;
+}
+
+.image-section {
+  Background: #F4F6F7;
+}
+
+.image-section img {
+  border-radius: 0.5rem;
+  border: 0.3rem solid #154360;
+}
+
+.assets-section {
+  margin: 4vw auto 0 auto;
+  border-bottom: 5px solid #F4F6F7;
+}
