@@ -42,6 +42,10 @@ button {
   background-color: #D0D3D4;
 }
 
+.art-section {
+  padding-bottom: 10vw;
+}
+
 .center {
   display: block;
   margin: 4vw auto 1vw auto;
@@ -93,18 +97,24 @@ button {
 
 .top-btn {
   margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
 
 .image-section {
   Background: #F4F6F7;
 }
 
-.image-section img {
+.assets-section {
+  margin: 4vw auto 0 auto;
+  border-bottom: 5px solid #F4F6F7;
+}
+
+#canvas {
   border-radius: 0.5rem;
   border: 0.3rem solid #154360;
 }
 
-.assets-section {
-  margin: 4vw auto 0 auto;
-  border-bottom: 5px solid #F4F6F7;
+.select-dropdown {
+  margin: 0 auto 1vw auto;
+  width: 45%;
 }

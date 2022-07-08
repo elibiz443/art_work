@@ -1,7 +1,40 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+Art.create(
+  name: "Sample_One"
+)
+
+Text.create(
+  text_decoration: "italic, bold",
+  text_content: "Sample Text",
+  text_shadow: true,
+  art_id: 1
+)
+
+Icon.create(
+  attachment: File.open(File.join(Rails.root, '/app/assets/images/icons/star.png')),
+  art_id: 1
+)
+
+Icon.create(
+  attachment: File.open(File.join(Rails.root, '/app/assets/images/icons/circle.png')),
+  art_id: 1
+)
+
+Icon.create(
+  attachment: File.open(File.join(Rails.root, '/app/assets/images/icons/square.png')),
+  art_id: 1
+)
+
+Photo.create(
+  attachment: File.open(File.join(Rails.root, '/app/assets/images/photos/blue_ribbon.png')),
+  art_id: 1
+)
+
+Photo.create(
+  attachment: File.open(File.join(Rails.root, '/app/assets/images/photos/blue_bird.png')),
+  art_id: 1
+)
+
+Photo.create(
+  attachment: File.open(File.join(Rails.root, '/app/assets/images/photos/gold_star.png')),
+  art_id: 1
+)

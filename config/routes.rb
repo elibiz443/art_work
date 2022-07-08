@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   resources :texts
   resources :photos
 
+  patch "arts#index", to: "arts#update"
+
   root "arts#index"
 end

@@ -16,9 +16,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_06_021445) do
 
   create_table "arts", force: :cascade do |t|
     t.string "name", default: "Untitled"
-    t.string "size", default: "800 x 400"
-    t.string "background_color", default: "#D6EAF8"
-    t.string "background_style"
+    t.integer "width", default: 1350
+    t.integer "height", default: 900
+    t.string "background_color", default: "#EBF5FB"
+    t.string "background_color_opacity", default: "1.0"
+    t.string "radial_gradient", default: "none"
+    t.string "radial_gradient_color", default: "rgba(0, 255, 255, 1.0)"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,16 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_06_021445) do
   end
 
   create_table "texts", force: :cascade do |t|
-    t.string "text_decoration"
-    t.string "font_size"
-    t.string "text_color"
-    t.string "text_alignment"
-    t.string "line_height"
-    t.string "letter_spacing"
-    t.string "font_style"
-    t.string "background_color"
-    t.string "background_opacity"
-    t.string "text_shadow"
+    t.string "text_decoration", default: "bold"
+    t.string "font_size", default: "12px"
+    t.string "text_color", default: "#000000"
+    t.string "text_alignment", default: "left"
+    t.string "line_height", default: "1"
+    t.string "letter_spacing", default: "1"
+    t.string "font_style", default: "San Serif"
+    t.string "background_color", default: "#ccc"
+    t.string "background_opacity", default: "10%"
+    t.string "text_shadow", default: "f"
     t.string "text_content"
     t.bigint "art_id"
     t.datetime "created_at", null: false
