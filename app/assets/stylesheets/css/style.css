@@ -163,3 +163,8 @@ button {
 #section4 {
   display: none;
 }
+
+.input-form {
+  margin: 0 auto 1vw auto;
+  width: 55%;
+}

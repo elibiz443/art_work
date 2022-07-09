@@ -1,7 +1,10 @@
 class ArtsController < ApplicationController
   def index
     @arts = Art.all
-    @art = Art.find(1) 
+    @art = Art.find_by_id(1) 
+    @art_texts = ArtText.where(art_id: 1)
+    @art_text = ArtText.find_by_id(1)
+    @selected_text = SelectedText.find_by_art_id(1) 
   end
 
   def create

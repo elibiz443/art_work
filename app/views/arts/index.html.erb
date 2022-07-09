@@ -39,10 +39,12 @@
         <% end %>
         >
 
+          <div style="padding: 2% 2% 2% 2%;word-wrap:break-word;width: <%= my_width - 0.5 %>vw;height: <%= my_height - 0.5 %>vw;">
+            <% @art_texts.each do |art_text| %>
+              <span style="background-color: blue;padding: 0.5vw 1vw 0.5vw 1vw;color: #fff;"><%= art_text.content %></span>
+            <% end %>
+          </div>
 
-          <!-- <img src="/assets/icons/star.png" style="position: relative;z-index: 999;width: 400px;height: auto;"> -->
-
-          <!-- <p>Weeeeeeeeeeeeeeeeeeee</p> -->
         </div>
       </div>
 
@@ -55,6 +57,12 @@
                 <button class="button-element" id="select_input2">Text</button>
                 <button class="button-element" id="select_input3">Icons</button>
                 <button class="button-element" id="select_input4">Photos</button>
+              </div>
+
+              <div style="padding: 10px;text-align:center;">
+                <% flash.each do |type, msg| %>
+                  <%= content_tag :div, msg, class: build_alert_classes(type) %>
+                <% end %>
               </div>
 
               <section id="section1">
@@ -118,7 +126,62 @@
               </section>
 
               <section id="section2">
-                <h4>This Is Section 2</h4>
+                <li class="top-btn">
+                  <button class="btn btn-primary top-btn"><i class="fa-solid fa-rotate-left"></i>&ensp;Undo</button>
+                  <button class="btn btn-primary top-btn">Redo&ensp;<i class="fa-solid fa-rotate-right"></i></button>
+                </li>
+
+                <% if ArtText.where(art_id: 1) == [] %>
+                  <li class="top-btn">
+                    <label for="cars">Add Text:</label>                    
+                    <%= form_with model: ArtText.new, html: {class: "input-form", autocomplete: "off"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.text_field :content, placeholder: "Enter Input Text", class: "form-control", autocomplete: false %>
+                        <%= f.hidden_field :art_id, value: 1 %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Add Text</button>
+                      </div>
+                    <% end %>
+                  </li>
+                <% else %>
+                  <li class="top-btn">
+                    <label for="cars">Add Text:</label>                    
+                    <%= form_with model: ArtText.new, html: {class: "input-form", autocomplete: "off"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.text_field :content, placeholder: "Enter Input Text", class: "form-control", autocomplete: false %>
+                        <%= f.hidden_field :art_id, value: 1 %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Add Text</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label for="cars">Select Text To Edit:</label>
+                    <% if @selected_text != nil %>
+                      <%# form_for @selected_text, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
+
+                      <%= form_for @selected_text, url: "/selected_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                        <div style="display: flex;">
+                          <%= f.select :art_text_id, @art_texts.collect {|art_text| [art_text.content[0, 15]..., art_text.id]}, {:include_blank => false}, {:class => "form-select"} %>
+                          <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Select</button>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <h6>EDIT TEXT</h6>
+                    <label for="cars">Content:</label>                    
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.text_field :content, value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).content, class: "form-control" %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Edit</button>
+                      </div>
+                    <% end %>
+                  </li>
+                <% end %>
+
+                <li class="top-btn">
+                  <button class="btn btn-primary top-btn"><i class="fa-brands fa-firstdraft"></i>&ensp;Save Draft</button>
+                  <button class="btn btn-primary top-btn"><i class="fa-solid fa-floppy-disk"></i>&ensp;Save</button>
+                </li>
               </section>
 
               <section id="section3">

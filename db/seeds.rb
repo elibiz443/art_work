@@ -2,12 +2,15 @@ Art.create(
   name: "Sample_One"
 )
 
-Text.create(
-  text_decoration: "italic, bold",
-  text_content: "Sample Text",
-  text_shadow: true,
-  art_id: 1
-)
+# ArtText.create(
+#   art_id: 1
+# )
+
+# ArtText.create(
+#   content: "Sample Text Two",
+#   art_id: 1
+# )
+
 
 Icon.create(
   attachment: File.open(File.join(Rails.root, '/app/assets/images/icons/star.png')),
