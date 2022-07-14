@@ -29,19 +29,154 @@
           end
         %>
         <div id="canvas" class="center" 
-        <% if @art.radial_gradient == "none" %>
-          style="background-color: <%= @art.background_color %>;width: <%= my_width %>vw; height: <%= my_height %>vw;"
-        <% elsif @art.radial_gradient == "centered" %>
-          style="width: <%= my_width %>vw; height: <%= my_height %>vw; background: radial-gradient(<%= @art.background_color %>, <%= @art.radial_gradient_color %>);"
-        <% else %>
-          style="width: <%= my_width %>vw; height: <%= my_height %>vw;background: radial-gradient(ellipse at top, <%= @art.background_color %>, transparent), 
-          radial-gradient(ellipse at bottom, <%= @art.radial_gradient_color %>, transparent);"
-        <% end %>
+          <% if @art.radial_gradient == "none" %>
+            style="background-color: <%= @art.background_color %>;width: <%= my_width %>vw; height: <%= my_height %>vw;"
+          <% elsif @art.radial_gradient == "centered" %>
+            style="width: <%= my_width %>vw; height: <%= my_height %>vw; background: radial-gradient(<%= @art.background_color %>, <%= @art.radial_gradient_color %>);"
+          <% else %>
+            style="width: <%= my_width %>vw; height: <%= my_height %>vw;background: radial-gradient(ellipse at top, <%= @art.background_color %>, transparent), 
+            radial-gradient(ellipse at bottom, <%= @art.radial_gradient_color %>, transparent);"
+          <% end %>
         >
 
-          <div style="padding: 2% 2% 2% 2%;word-wrap:break-word;width: <%= my_width - 0.5 %>vw;height: <%= my_height - 0.5 %>vw;">
+          <div style="word-wrap:break-word;width: <%= my_width - 0.5 %>vw;height: <%= my_height - 0.5 %>vw;">
             <% @art_texts.each do |art_text| %>
-              <span style="background-color: blue;padding: 0.5vw 1vw 0.5vw 1vw;color: #fff;"><%= art_text.content %></span>
+              <% if art_text.curve == false %>
+                <div 
+                  style="
+                    padding-top: <%= art_text.padding_top %>vw;
+                    padding-left: <%= art_text.padding_left %>vw;
+                    transform: <%= @art_text.transform %>;
+                  "
+                >
+                  <span 
+                    style="
+                      font-family: <%= @art_text.font_family %>;
+                      font-style: <%= @art_text.font_style %>;
+                      font-weight: <%= @art_text.font_weight %>;
+                      text-decoration: <%= @art_text.text_decoration %>;
+                      font-size: <%= @art_text.size %>;
+                      color: <%= @art_text.color %>;
+                      background-color: <%= @art_text.background %>;
+                      padding: <%= @art_text.background_padding %>vw;
+                      border-radius: <%= @art_text.border_radius %>;
+                      line-height: <%= @art_text.line_height %>vw;
+                      letter-spacing: <%= @art_text.letter_spacing %>vw;
+                      text-shadow: <%= @art_text.text_shadow %>px <%= @art_text.text_shadow %>px <%= @art_text.text_shadow %>px <%= @art_text.text_shadow_color %>;
+                    "
+                    id="text_element"
+                    type="button"
+                    onclick="navigationFunction()"
+                  >
+                    <%= art_text.content %>
+                  </span>
+                  <div class="navigation_button_container dropdown" id="navigationArea">
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                      <% if @art_text.padding_top == 1 || @art_text.padding_top == 2 || @art_text.padding_top == 3 %>
+                        <%= f.hidden_field :padding_top, :value => @art_text.padding_top - 1 %>
+                        <button type="submit" class="navigation_button_1">
+                          <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                      <% else %>
+                        <%= f.hidden_field :padding_top, :value => @art_text.padding_top - @art_text.padding_size_button %>
+                        <button type="submit" class="navigation_button_1">
+                          <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                      <% end %>
+                    <% end %>
+                    <div class="side_elements">
+                      <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
+                        <% if @art_text.padding_top == 1 || @art_text.padding_top == 2 || @art_text.padding_top == 3 %>
+                          <%= f.hidden_field :padding_left, :value => @art_text.padding_left - 1 %>
+                          <button type="submit" class="navigation_button_2">
+                            <i class="fa-solid fa-arrow-left"></i>
+                          </button>
+                        <% else %>
+                          <%= f.hidden_field :padding_left, :value => @art_text.padding_left - @art_text.padding_size_button %>
+                          <button type="submit" class="navigation_button_2">
+                            <i class="fa-solid fa-arrow-left"></i>
+                          </button>
+                        <% end %>
+                      <% end %>
+                      <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
+                        <%= f.hidden_field :padding_left, :value => @art_text.padding_left + @art_text.padding_size_button %>
+                        <button type="submit" class="navigation_button_3">
+                          <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                      <% end %>
+                    </div>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                      <% if @art_text.padding_top == 33 || @art_text.padding_top == 34 || @art_text.padding_top == 35 %>
+                        <%= f.hidden_field :padding_top, :value => @art_text.padding_top + 1 %>
+                        <button type="submit" class="navigation_button_4">
+                          <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                      <% else %>
+                        <%= f.hidden_field :padding_top, :value => @art_text.padding_top + @art_text.padding_size_button %>
+                        <button type="submit" class="navigation_button_4">
+                          <i class="fa-solid fa-arrow-down"></i>
+                        </button>
+                      <% end %>
+                    <% end %>
+                    <span class="padding-size-button dropdown-content">
+                      <% if @art_text.padding_size_button == 1 %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 1 %>
+                          <button type="submit" class="padding-button-element2">x1</button><br>
+                        <% end %>
+                      <% else %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 1 %>
+                          <button type="submit" class="padding-button-element">x1</button><br>
+                        <% end %>
+                      <% end %>
+                      <% if @art_text.padding_size_button == 2 %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 2 %>
+                          <button type="submit" class="padding-button-element2">x2</button><br>
+                        <% end %>
+                      <% else %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 2 %>
+                          <button type="submit" class="padding-button-element">x2</button><br>
+                        <% end %>
+                      <% end %>
+                      <% if @art_text.padding_size_button == 3 %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 3 %>
+                          <button type="submit" class="padding-button-element2">x3</button><br>
+                        <% end %>
+                      <% else %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 3 %>
+                          <button type="submit" class="padding-button-element">x3</button><br>
+                        <% end %>
+                      <% end %>
+                      <% if @art_text.padding_size_button == 4 %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 4 %>
+                          <button type="submit" class="padding-button-element2">x4</button><br>
+                        <% end %>
+                      <% else %>
+                        <%= form_for @art_text, url: "/art_texts/index", method: :patch do |f| %>
+                          <%= f.hidden_field :padding_size_button, :value => 4 %>
+                          <button type="submit" class="padding-button-element">x4</button><br>
+                        <% end %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              <% else %>
+                <svg viewBox="-250 20 1000 1000">
+                  <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
+                  <text style="color: <%= @art_text.color %>;background-color: <%= @art_text.background %>;font-size: <%= @art_text.size %>;font-weight: 900;font-style: normal;
+                  text-decoration: underline overline;font-family: 'Luckiest Guy', cursive;">
+                    <textPath xlink:href="#curve">
+                      <%= art_text.content %>
+                    </textPath>
+                  </text>    
+                </svg>
+              <% end %>
             <% end %>
           </div>
 
@@ -74,7 +209,7 @@
                   <label>Background Color:</label>
                   <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
                     <div style="display: flex;">
-                      <%= f.select(:background_color, ColorList.new.full_list, {}, {value: @art.background_color, class: 'form-select'}) %>
+                      <%= f.select(:background_color, ColorList.new.full_list.sort, {}, {value: @art.background_color, class: 'form-select'}) %>
                       <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-fill"></i>Change</button>
                     </div>
                   <% end %>
@@ -103,7 +238,7 @@
                     <label>Radial Gradient Color:</label>
                     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
                       <div style="display: flex;">
-                        <%= f.select(:radial_gradient_color, ColorList.new.full_list, {}, {value: @art.radial_gradient_color, class: 'form-select'}) %>
+                        <%= f.select(:radial_gradient_color, ColorList.new.full_list.sort, {}, {value: @art.radial_gradient_color, class: 'form-select'}) %>
                         <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-fill-drip"></i>Change</button>
                       </div>
                     <% end %>
@@ -156,8 +291,6 @@
                   <li class="top-btn">
                     <label for="cars">Select Text To Edit:</label>
                     <% if @selected_text != nil %>
-                      <%# form_for @selected_text, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
-
                       <%= form_for @selected_text, url: "/selected_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
                         <div style="display: flex;">
                           <%= f.select :art_text_id, @art_texts.collect {|art_text| [art_text.content[0, 15]..., art_text.id]}, {:include_blank => false}, {:class => "form-select"} %>
@@ -168,11 +301,164 @@
                   </li>
                   <li class="top-btn">
                     <h6>EDIT TEXT</h6>
-                    <label for="cars">Content:</label>                    
+                    <label>Content:</label>                    
                     <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
                       <div style="display: flex;">
                         <%= f.text_field :content, value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).content, class: "form-control" %>
                         <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Edit</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Size:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:size, FontSize.new.full_list, {}, {value: @art_text.size, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Color:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:color, ColorList.new.full_list.sort, {}, {value: @art_text.color, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-fill"></i>Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Color Opacity:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:color_opacity, OpacityList.new.full_list, {}, {value: @art_text.color_opacity, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-fill"></i>Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Font Family:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:font_family, FontList.new.full_list.sort, {}, {value: @art_text.font_family, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Font Style:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:font_style, [["normal"], ["italic"], ["oblique"]], {}, {value: @art_text.font_style, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Font Weight:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:font_weight, [["Normal", 400], ["Medium", 500], ["Bold", 800]], {}, {value: @art_text.font_weight, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Decoration:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:text_decoration, [["none"], ["overline"], ["line-through"], ["underline"], ["underline overline"]], {}, {value: @art_text.text_decoration, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Background:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.hidden_field :background, :value => "transparent" %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Remove Background Colour</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Background Colour:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:background, ColorList.new.full_list, {}, {value: @art_text.background, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Background Opacity:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:background_opacity, OpacityList.new.full_list, {}, {value: @art_text.background_opacity, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Background Padding:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:background_padding, [["Small", 0.5], ["Normal", 1], ["Average", 1.5], ["Above-Average", 2], ["Big", 3], ["Huge", 4], ["Extra-Huge", 5]], {}, {value: @art_text.background_padding, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Background Border Radius:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:border_radius, BorderRadiusList.new.full_list, {}, {value: @art_text.border_radius, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Line Height:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:line_height, [["Normal", 3], ["Medium", 6], ["Big", 9], ["Extra-Big", 12]], {}, {value: @art_text.line_height, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Letter Spacing:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:letter_spacing, [["Normal", 0.2], ["Medium", 0.4], ["Big", 0.6], ["Extra-Big", 0.8]], {}, {value: @art_text.letter_spacing, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Shadow:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:text_shadow, [["None", 0], ["Normal", 2], ["Medium", 6], ["Heavy", 9]], {}, {value: @art_text.text_shadow, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Shadow Colour:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:text_shadow_color, ColorList.new.full_list, {}, {value: @art_text.text_shadow_color, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
+                      </div>
+                    <% end %>
+                  </li>
+                  <li class="top-btn">
+                    <label>Text Shadow Colour Opacity:</label>
+                    <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+                      <div style="display: flex;">
+                        <%= f.select(:text_shadow_color_opacity, OpacityList.new.full_list, {}, {value: @art_text.text_shadow_color_opacity, class: 'form-select'}) %>
+                        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Change</button>
                       </div>
                     <% end %>
                   </li>

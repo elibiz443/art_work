@@ -32,6 +32,9 @@ footer {
   text-align: center;
   padding: 1rem;
   border-top: 4px solid #0a315a;
+  position: absolute;
+  bottom:0;
+  width: 100%;
 }
 
 footer h4 {

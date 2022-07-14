@@ -2,25 +2,28 @@ class CreateArtTexts < ActiveRecord::Migration[7.0]
   def change
     create_table :art_texts do |t|
       t.string :content
-      t.boolean :italic, :default => false
-      t.boolean :bold, :default => false
-      t.boolean :underline, :default => false
-      t.boolean :strikethrough, :default => false
+      t.string :font_family, :default => "'Luckiest Guy', cursive"
+      t.string :font_style, :default => "normal"
+      t.integer :font_weight, :default => 400
+      t.string :text_decoration, :default => "none"
       t.string :size, :default => "2rem"
-      t.string :color, :default => "#F5F5F5"
+      t.string :color, :default => "rgba(21, 67, 96, 1.0)"
       t.string :color_opacity, :default => "1.0"
-      t.string :background, :default => "#2F4F4F"
+      t.string :background, :default => "transparent"
       t.string :background_opacity, :default => "1.0"
-      t.string :alignment, :default => "left"
-      t.string :line_height, :default => "1"
-      t.string :letter_spacing, :default => "1"
-      t.string :font_style, :default => "none"
-      t.string :text_shadow, :default => "none"
-      t.string :text_shadow_color, :default => "#708090"
-      t.string :position, :default => "2 2 2 2"
-      t.string :rotation, :default => "none"
-      t.string :transformation, :default => "none"
-      t.string :curve, :default => "none"
+      t.integer :background_padding, :default => 1
+      t.string :border_radius, :default => "none"
+      t.integer :line_height, :default => 3
+      t.decimal :letter_spacing, :default => 0
+      t.integer :text_shadow, :default => 0
+      t.string :text_shadow_color, :default => "rgba(93, 173, 226, 1.0)"
+      t.string :text_shadow_color_opacity, :default => "1.0"
+      t.integer :padding_top, :default => 0
+      t.integer :padding_left, :default => 0
+      t.integer :padding_size_button, :default => 1
+      t.string :transform, :default => "rotate(0deg)"
+      t.boolean :curve, :default => false
+      t.string :view_box, :default => "-50 20 600 600"
       t.bigint :art_id
 
       t.timestamps
