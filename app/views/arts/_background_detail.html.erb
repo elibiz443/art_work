@@ -1,0 +1,59 @@
+<section id="section1">
+  <li class="top-btn">
+    <button class="btn btn-primary top-btn"><i class="fa-solid fa-rotate-left"></i>&ensp;Undo</button>
+    <button class="btn btn-primary top-btn">Redo&ensp;<i class="fa-solid fa-rotate-right"></i></button>
+  </li>
+  <li class="top-btn">
+    <label>Background Color:</label>
+    <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
+      <div style="display: flex;">
+        <%= f.select(:background_color, ColorList.new.full_list.sort, {}, {value: @art.background_color, class: 'form-select'}) %>
+        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-fill"></i>Change</button>
+      </div>
+    <% end %>
+  </li>
+  <li class="top-btn">
+    <label>Background Color Opacity:</label>
+    <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
+      <div style="display: flex;">
+        <%= f.select(:background_color_opacity, OpacityList.new.full_list, {}, {value: @art.background_color_opacity, class: 'form-select'}) %>
+        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-fill"></i>Change</button>
+      </div>
+    <% end %>
+  </li>
+  <li class="top-btn">
+    <label>Radial Gradient:</label>
+    <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
+      <div style="display: flex;">
+        <%= f.select(:radial_gradient, RadialList.new.full_list, {}, {value: @art.radial_gradient, class: 'form-select'}) %>
+        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-bucket"></i>Change</button>
+      </div>
+    <% end %>
+  </li>
+
+  <% if @art.radial_gradient != "none" %>
+    <li class="top-btn">
+      <label>Radial Gradient Color:</label>
+      <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
+        <div style="display: flex;">
+          <%= f.select(:radial_gradient_color, ColorList.new.full_list.sort, {}, {value: @art.radial_gradient_color, class: 'form-select'}) %>
+          <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-fill-drip"></i>Change</button>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+
+  <li class="top-btn">
+    <label for="cars">Size:</label>
+    <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
+      <div style="display: flex;">
+        <%= f.select(:width, SizeList.new.full_list, {}, {value: @art.width, class: 'form-select'}) %>
+        <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;"><i class="fa-solid fa-ruler"></i>Change</button>
+      </div>
+    <% end %>
+  </li>
+  <li class="top-btn">
+    <button class="btn btn-primary top-btn"><i class="fa-brands fa-firstdraft"></i>&ensp;Save Draft</button>
+    <button class="btn btn-primary top-btn"><i class="fa-solid fa-floppy-disk"></i>&ensp;Save</button>
+  </li>
+</section>
