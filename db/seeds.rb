@@ -3,10 +3,6 @@ Art.create(
 )
 
 # ArtText.create(
-#   art_id: 1
-# )
-
-# ArtText.create(
 #   content: "Sample Text Two",
 #   art_id: 1
 # )

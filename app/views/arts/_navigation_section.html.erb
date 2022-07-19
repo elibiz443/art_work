@@ -1,0 +1,102 @@
+<% if @art_text != nil %>
+  <h6>Movement:</h6>
+  <% if @art_text != nil %>
+    <div class="navigation_button_container">
+      <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
+        <%= f.hidden_field :margin_top, :value => @nav_art_text.margin_top - 2 %>
+        <button type="submit" class="navigation_button_1">
+          <i class="fa-solid fa-arrow-up"></i>
+        </button>
+      <% end %>
+      <div class="side_elements">
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
+          <%= f.hidden_field :margin_left, :value => @nav_art_text.margin_left - 2 %>
+          <button type="submit" class="navigation_button_2">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+        <% end %>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
+          <%= f.hidden_field :margin_left, :value => @nav_art_text.margin_left + 2 %>
+          <button type="submit" class="navigation_button_3">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        <% end %>
+      </div>
+      <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
+        <%= f.hidden_field :margin_top, :value => @nav_art_text.margin_top + 2 %>
+        <button type="submit" class="navigation_button_4">
+          <i class="fa-solid fa-arrow-down"></i>
+        </button>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="additional-tools">
+    <ul>
+      <li class="top-btn">
+        <label>Text Size:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:size, FontSize.new.full_list, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).size, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+      <li class="top-btn">
+        <label>Text Color:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:color, ColorList.new.full_list.sort, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).color, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+      <li class="top-btn">
+        <label>Color Opacity:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:color_opacity, OpacityList.new.full_list, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+      <li class="top-btn">
+        <label>Font Family:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:font_family, FontList.new.full_list.sort, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).font_family, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+      <li class="top-btn">
+        <label>Font Style:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:font_style, [["normal"], ["italic"], ["oblique"]], {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).font_style, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+      <li class="top-btn">
+        <label>Font Weight:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:font_weight, [["Normal", 400], ["Medium", 500], ["Bold", 800]], {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).font_weight, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+      <li class="top-btn">
+        <label>Text Decoration:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:text_decoration, [["none"], ["overline"], ["line-through"], ["underline"], ["underline overline"]], {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).text_decoration, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+      <li class="top-btn">
+        <label>Text Background:</label>
+        <%= form_for @art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <div style="display: flex;">
+            <%= f.select(:background, ColorList.new.full_list, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).background, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+<% end %>

@@ -36,7 +36,7 @@ class ArtTextsController < ApplicationController
 
   def art_text_params
     params.require(:art_text).permit(:content, :font_family, :font_style, :font_weight, :text_decoration, :size, :color, :color_opacity, :background, :background_opacity,
-    :background_padding, :border_radius, :line_height, :letter_spacing, :text_shadow, :text_shadow_color, :text_shadow_color_opacity, :padding_top, :padding_left, 
+    :background_padding, :border_radius, :line_height, :letter_spacing, :text_shadow, :text_shadow_color, :text_shadow_color_opacity, :margin_top, :margin_left, 
     :padding_size_button, :transform, :curve, :view_box, :art_id)
   end
 end

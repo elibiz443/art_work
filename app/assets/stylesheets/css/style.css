@@ -1,98 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,500,600);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500);
 
-/*Extra Large Screens*/
-@media only screen and (min-width: 1300px) {
-  .padding-size-button {
-    display: flex;
-    margin: -71px 0 0 100px;
-  }
-
-  .padding-button-element {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #7F8C8D;
-    color: #FFF;
-    font-size: 0.5rem;
-  }
-  .padding-button-element2 {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #9849C4;
-    color: #FFF;
-    font-size: 0.7rem;
-  }
-}
-
-/*Large Screens*/
-@media only screen and (max-width: 1300px) and (min-width:992px) {
-  .padding-size-button {
-    display: flex;
-    margin: -71px 0 0 100px;
-  }
-
-  .padding-button-element {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #7F8C8D;
-    color: #FFF;
-    font-size: 0.5rem;
-  }
-  .padding-button-element2 {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #9849C4;
-    color: #FFF;
-    font-size: 0.7rem;
-  }
-}
-
-/*Medium Screens*/
-@media only screen and (max-width: 992px) {
-  .padding-size-button {
-    display: flex;
-    margin: -71px 0 0 100px;
-  }
-
-  .padding-button-element {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #7F8C8D;
-    color: #FFF;
-    font-size: 0.5rem;
-  }
-  .padding-button-element2 {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #9849C4;
-    color: #FFF;
-    font-size: 0.7rem;
-  }
-}
-
-/*Small Screens*/
-@media only screen and (max-width: 640px) {
-  .padding-size-button {
-    display: flex;
-    margin: -71px 0 0 100px;
-  }
-
-  .padding-button-element {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #7F8C8D;
-    color: #FFF;
-    font-size: 0.5rem;
-  }
-  .padding-button-element2 {
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 40px;
-    background-color: #9849C4;
-    color: #FFF;
-    font-size: 0.7rem;
-  }
-}
-
 body {
   font-family: Roboto, sans-serif;
   margin: 0;
@@ -132,64 +40,27 @@ button {
 .art-container {
   min-height: calc(100vh - 20px);
   background-color: #D0D3D4;
+  padding-bottom: 150px;
 }
 
 .art-section {
   padding-bottom: 10vw;
 }
 
-.center {
-  display: block;
-  margin: 4vw auto 1vw auto;
-  width: 95%;
-  display: flex;
-}
-
-.edit-section {
-  background-color: #5D6D7E;
-  padding: 1vw;
-  margin: 1vw 2vw 1vw 2vw;
-  color: #F4F6F6;
-  font-weight: bold;
-  font-size: 0.8rem;
-  text-align: center;
-  border-radius: 0.4rem;
-}
-
-.edit-section li {
-  background-color: #154360;
-  margin-bottom: 1rem;
-  padding: 0.4rem 1rem 0.4rem 1rem;
-  border-radius: 0.3rem;
-}
-
-.edit-section li:hover {
-  background-color: #F4F6F6;
-  color: #154360;
-}
-
 .info-section {
   background-color: #95A5A6;
-  padding: 1vw;
-  margin: 1vw 2vw 1vw 2vw;
+  margin: 0.5vw;
   color: #F4F6F6;
   font-weight: bold;
   font-size: 0.9rem;
   text-align: center;
   border-radius: 0.4rem;
-}
-
-.info-section li {
-  margin-bottom: 0.8rem;
+  padding: 1vw 0 2.5vw 0;
+  height: 88vh;
 }
 
 .btn {
   font-size: 0.7rem !important;
-}
-
-.top-btn {
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
 }
 
 .image-section {
@@ -197,18 +68,26 @@ button {
 }
 
 .assets-section {
-  margin: 4vw auto 0 auto;
   border-bottom: 5px solid #F4F6F7;
 }
 
 #canvas {
-  border-radius: 0.5rem;
   border: 0.3rem solid #154360;
+  border-radius: 0.5rem;
+  margin: 4vw auto 1vw auto;
+  overflow: hidden;
+  position: relative;
+}
+
+#text_element {
+  position: absolute;
+  white-space: nowrap;
+  z-index: 1;
 }
 
 .select-dropdown {
-  margin: 0 auto 1vw auto;
-  width: 55%;
+  margin: 0 auto 0.5vw auto;
+  width: 60%;
 }
 
 .button-section {
@@ -258,7 +137,7 @@ button {
 
 .input-form {
   margin: 0 auto 1vw auto;
-  width: 55%;
+  width: 60%;
 }
 
 path {
@@ -268,8 +147,6 @@ path {
 /*Movement Button Section*/
 .navigation_button_container {
   font-size: 0.6rem;
-  position: relative;
-  z-index: 999;
   text-align: center;
   margin: 10px auto 0 auto;
 }
@@ -329,7 +206,6 @@ path {
 
 /*Dropdown*/
 .dropdown {
-  position: relative;
   padding: 5px 0 15px 0;
   width: 120px;
 }
@@ -343,4 +219,30 @@ path {
 
 #navigationArea {
   display: none;
+}
+
+.dropdown h4 {
+  color: #F0F3F4;
+}
+
+.sub-details h6 {
+  color: #F0F3F4;
+}
+
+.remove-button-styling {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.additional-tools {
+  padding-top: 22px;
+}
+
+.padding-top {
+  padding-top: 10px;
 }

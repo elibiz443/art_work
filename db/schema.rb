@@ -32,12 +32,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_203656) do
     t.integer "text_shadow", default: 0
     t.string "text_shadow_color", default: "rgba(93, 173, 226, 1.0)"
     t.string "text_shadow_color_opacity", default: "1.0"
-    t.integer "padding_top", default: 0
-    t.integer "padding_left", default: 0
-    t.integer "padding_size_button", default: 1
+    t.integer "margin_top", default: 0
+    t.integer "margin_left", default: 0
     t.string "transform", default: "rotate(0deg)"
     t.boolean "curve", default: false
-    t.string "view_box", default: "-50 20 600 600"
+    t.string "view_box", default: "0 0 600 600"
     t.bigint "art_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

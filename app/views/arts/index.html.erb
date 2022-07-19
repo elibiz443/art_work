@@ -1,7 +1,6 @@
 <div class="art-container">
   <section class="art-section">
     <div class="row" >
-
       <div class="col-12 col-md-8 image-section">
         <%
           case @art.width
@@ -28,7 +27,7 @@
             my_height = 40
           end
         %>
-        <div id="canvas" class="center" 
+        <div id="canvas"
           <% if @art.radial_gradient == "none" %>
             style="background-color: <%= @art.background_color %>;width: <%= my_width %>vw; height: <%= my_height %>vw;"
           <% elsif @art.radial_gradient == "centered" %>
@@ -38,20 +37,24 @@
             radial-gradient(ellipse at bottom, <%= @art.radial_gradient_color %>, transparent);"
           <% end %>
         >
-          <div style="word-wrap:break-word;width: <%= my_width - 0.5 %>vw;height: <%= my_height - 0.5 %>vw;">
+          <div style="width: <%= my_width - 0.5 %>vw;height: <%= my_height - 0.5 %>vw;">
             <%= render 'text_content' %>
           </div>
         </div>
+        <p style="padding-left: 80px;font-size: 1rem;"><i><u><b>* N/B:</b></u> Click On Text To Edit</i></p>
       </div>
       <div class="col-12 col-md-4 assets-section">
-        <div class="row">
-          <div class="col-12">
-            <ul class="info-section">
+        <div class="row info-section">
+          <div class="col-4" style="border-right: 4px solid #B2BABB;">
+            <%= render 'navigation_section' %>
+          </div>
+          <div class="col-8">
+            <ul>
               <div class="button-section">
-                <button class="button-element-active" id="select_input1">Background</button>
-                <button class="button-element" id="select_input2">Text</button>
-                <button class="button-element" id="select_input3">Icons</button>
-                <button class="button-element" id="select_input4">Photos</button>
+                <button class="button-element-active" id="select_input1"><i class="fa-solid fa-paintbrush"></i></button>
+                <button class="button-element" id="select_input2"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="button-element" id="select_input3"><i class="fa-solid fa-icons"></i></button>
+                <button class="button-element" id="select_input4"><i class="fa-solid fa-images"></i></button>
               </div>
               <div style="padding: 10px;text-align:center;">
                 <% flash.each do |type, msg| %>
@@ -66,7 +69,6 @@
           </div>
         </div>
       </div>
-      
     </div>
   </section>
 </div>

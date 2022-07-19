@@ -5,6 +5,11 @@ class ArtsController < ApplicationController
     @art_texts = ArtText.where(art_id: 1)
     @art_text = ArtText.find_by_id(1)
     @selected_text = SelectedText.find_by_art_id(1) 
+    @text_background = ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).background
+
+    if @art_texts != []
+      @nav_art_text = ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id)
+    end
   end
 
   def create

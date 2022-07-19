@@ -11,8 +11,8 @@ class ArtText < ApplicationRecord
   belongs_to :art
 
   validates :content, presence: true
-  validates :padding_top, inclusion: {in: 0..36, message: 'Maximum Limit Reached!'}
-  validates :padding_left, inclusion: {in: 0..44, message: 'Maximum Limit Reached!'}
+  validates :margin_top, inclusion: {in: 0..36, message: 'Maximum Limit Reached!'}
+  validates :margin_left, inclusion: {in: 0..58, message: 'Maximum Limit Reached!'}
 
 
   default_scope {order('art_texts.created_at ASC')}
@@ -22,7 +22,9 @@ class ArtText < ApplicationRecord
   end
 
   def assign_background_opacity
-    self.background[-4, 3] = self.background_opacity
+    if self.background != "transparent"
+      self.background[-4, 3] = self.background_opacity
+    end
   end
 
   def assign_shadow_opacity
