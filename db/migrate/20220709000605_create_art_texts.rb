@@ -20,7 +20,7 @@ class CreateArtTexts < ActiveRecord::Migration[7.0]
       t.string :text_shadow_color_opacity, :default => "1.0"
       t.integer :margin_top, :default => 0
       t.integer :margin_left, :default => 0
-      t.string :transform, :default => "rotate(0deg)"
+      t.integer :transform, :default => 0
       t.boolean :curve, :default => false
       t.string :view_box, :default => "0 0 600 600"
       t.bigint :art_id
