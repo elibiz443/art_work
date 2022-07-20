@@ -9,7 +9,7 @@
         font-weight: <%= art_text.font_weight %>;
         font-size: <%= art_text.size %>;
         color: <%= art_text.color %>;
-        /*-webkit-text-stroke: 2px red;*/
+        -webkit-text-stroke: <%= art_text.stroke_width %>px <%= art_text.stroke_color %>;
         background-color: <%= art_text.background %>;
         padding: <%= art_text.background_padding %>vw;
         border-radius: <%= art_text.border_radius %>;
@@ -38,8 +38,8 @@
             text-decoration: <%= art_text.text_decoration %>;
             font-size: <%= art_text.size %>;
             fill: <%= art_text.color %>;
-            stroke: red;
-            stroke-width: 2;
+            stroke: <%= art_text.stroke_color %>;
+            stroke-width: <%= art_text.stroke_width %>;
             padding: <%= art_text.background_padding %>vw;
             border-radius: <%= art_text.border_radius %>;
             line-height: <%= art_text.line_height %>vw;

@@ -1,12 +1,6 @@
 Art.create(
-  name: "Sample_One"
+  name: "banner1",                                              
 )
-
-# ArtText.create(
-#   content: "Sample Text Two",
-#   art_id: 1
-# )
-
 
 Icon.create(
   attachment: File.open(File.join(Rails.root, '/app/assets/images/icons/star.png')),

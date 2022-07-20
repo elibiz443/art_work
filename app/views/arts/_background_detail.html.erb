@@ -2,25 +2,19 @@
   <li class="top-btn">
     <label>Background Color:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
-      <div style="display: flex;">
-        <%= f.select(:background_color, ColorList.new.full_list.sort, {}, {value: @art.background_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
-      </div>
+      <%= f.select(:background_color, ColorList.new.full_list.sort, {}, {value: @art.background_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
   </li>
   <li class="top-btn">
     <label>Background Color Opacity:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
-      <div style="display: flex;">
-        <%= f.select(:background_color_opacity, OpacityList.new.full_list, {}, {value: @art.background_color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
-      </div>
+      <%= f.select(:background_color_opacity, OpacityList.new.full_list, {}, {value: @art.background_color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
   </li>
   <li class="top-btn">
     <label>Radial Gradient:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
-      <div style="display: flex;">
-        <%= f.select(:radial_gradient, RadialList.new.full_list, {}, {value: @art.radial_gradient, class: 'form-select', onchange: 'this.form.submit()'}) %>
-      </div>
+      <%= f.select(:radial_gradient, RadialList.new.full_list, {}, {value: @art.radial_gradient, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
   </li>
 
@@ -28,9 +22,7 @@
     <li class="top-btn">
       <label>Radial Gradient Color:</label>
       <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
-        <div style="display: flex;">
-          <%= f.select(:radial_gradient_color, ColorList.new.full_list.sort, {}, {value: @art.radial_gradient_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
-        </div>
+        <%= f.select(:radial_gradient_color, ColorList.new.full_list.sort, {}, {value: @art.radial_gradient_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
       <% end %>
     </li>
   <% end %>
@@ -38,29 +30,27 @@
   <li class="top-btn" style="border-bottom: 2px solid #B2BABB;padding-bottom: 20px;">
     <label for="cars">Size:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
-      <div style="display: flex;">
-        <%= f.select(:width, SizeList.new.full_list, {}, {value: @art.width, class: 'form-select', onchange: 'this.form.submit()'}) %>
-      </div>
+      <%= f.select(:width, SizeList.new.full_list, {}, {value: @art.width, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
   </li>
 
   <div class="additional-tools">
     <li class="top-btn">                 
       <%= form_with model: ArtText.new, html: {class: "input-form", autocomplete: "off"} do |f| %>
-        <div style="display: flex;">
-          <%= f.text_field :content, placeholder: "Add Text", class: "form-control", autocomplete: false %>
-          <%= f.hidden_field :art_id, value: 1 %>
-          <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Add</button>
-        </div>
+        <%= f.text_area :content, placeholder: "Add Text", class: "form-control", autocomplete: false %>
+        <%= f.hidden_field :art_id, value: 1 %>
+        <button class="btn btn-primary" style="background-color: #34495E;border: none;margin-top: 10px;padding: 6px 30px 6px 30px;font-size: 0.8rem !important;overflow: hidden;">
+          <i class="fa-solid fa-font">&ensp;</i>Add Text
+        </button>
       <% end %>
     </li>
     <% if ArtText.where(art_id: 1) != [] %>
       <li class="top-btn">               
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
-          <div style="display: flex;">
-            <%= f.text_field :content, value:@nav_art_text.content, class: "form-control" %>
-            <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Edit Text</button>
-          </div>
+          <%= f.text_area :content, value:@nav_art_text.content, class: "form-control" %>
+          <button class="btn btn-primary" style="background-color: #34495E;border: none;margin-top: 10px;padding: 6px 30px 6px 30px;font-size: 0.8rem !important;overflow: hidden;">
+            <i class="fa-solid fa-square-pen">&ensp;</i>Edit Text
+          </button>
         <% end %>
       </li>
       <li>

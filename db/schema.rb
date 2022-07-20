@@ -37,6 +37,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_203656) do
     t.integer "transform", default: 0
     t.boolean "curve", default: false
     t.string "view_box", default: "0 0 600 600"
+    t.string "stroke_color", default: "transparent"
+    t.string "stroke_color_opacity", default: "1.0"
+    t.integer "stroke_width", default: 1
     t.bigint "art_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

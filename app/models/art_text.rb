@@ -8,6 +8,9 @@ class ArtText < ApplicationRecord
   before_create :assign_shadow_opacity
   before_save :assign_shadow_opacity
 
+  before_create :assign_stroke_opacity
+  before_save :assign_stroke_opacity
+
   belongs_to :art
 
   validates :content, presence: true
@@ -29,5 +32,11 @@ class ArtText < ApplicationRecord
 
   def assign_shadow_opacity
     self.text_shadow_color[-4, 3] = self.text_shadow_color_opacity
+  end
+
+  def assign_stroke_opacity
+    if self.stroke_color != "transparent"
+      self.stroke_color[-4, 3] = self.stroke_color_opacity
+    end
   end
 end
