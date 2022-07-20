@@ -47,7 +47,7 @@
         <label>Text Size:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.select(:size, FontSize.new.full_list, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).size, class: 'form-select', onchange: 'this.form.submit()'}) %>
+            <%= f.select(:size, FontSize.new.full_list, {}, {value: @nav_art_text.size, class: 'form-select', onchange: 'this.form.submit()'}) %>
           </div>
         <% end %>
       </li>
@@ -55,7 +55,7 @@
         <label>Text Color:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.select(:color, ColorList.new.full_list.sort, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).color, class: 'form-select', onchange: 'this.form.submit()'}) %>
+            <%= f.select(:color, ColorList.new.full_list.sort, {}, {value: @nav_art_text.color, class: 'form-select', onchange: 'this.form.submit()'}) %>
           </div>
         <% end %>
       </li>
@@ -63,7 +63,7 @@
         <label>Color Opacity:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.select(:color_opacity, OpacityList.new.full_list, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
+            <%= f.select(:color_opacity, OpacityList.new.full_list, {}, {value: @nav_art_text.color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
           </div>
         <% end %>
       </li>
@@ -71,7 +71,7 @@
         <label>Font Family:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.select(:font_family, FontList.new.full_list.sort, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).font_family, class: 'form-select', onchange: 'this.form.submit()'}) %>
+            <%= f.select(:font_family, FontList.new.full_list.sort, {}, {value: @nav_art_text.font_family, class: 'form-select', onchange: 'this.form.submit()'}) %>
           </div>
         <% end %>
       </li>
@@ -79,7 +79,7 @@
         <label>Font Style:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.select(:font_style, [["normal"], ["italic"], ["oblique"]], {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).font_style, class: 'form-select', onchange: 'this.form.submit()'}) %>
+            <%= f.select(:font_style, [["normal"], ["italic"], ["oblique"]], {}, {value: @nav_art_text.font_style, class: 'form-select', onchange: 'this.form.submit()'}) %>
           </div>
         <% end %>
       </li>
@@ -87,7 +87,7 @@
         <label>Font Weight:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.select(:font_weight, [["Normal", 400], ["Medium", 500], ["Bold", 800]], {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).font_weight, class: 'form-select', onchange: 'this.form.submit()'}) %>
+            <%= f.select(:font_weight, [["Normal", 400], ["Medium", 500], ["Bold", 800]], {}, {value: @nav_art_text.font_weight, class: 'form-select', onchange: 'this.form.submit()'}) %>
           </div>
         <% end %>
       </li>
@@ -95,7 +95,7 @@
         <label>Text Decoration:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.select(:text_decoration, [["none"], ["overline"], ["line-through"], ["underline"], ["underline overline"]], {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).text_decoration, class: 'form-select', onchange: 'this.form.submit()'}) %>
+            <%= f.select(:text_decoration, [["none"], ["overline"], ["line-through"], ["underline"], ["underline overline"]], {}, {value: @nav_art_text.text_decoration, class: 'form-select', onchange: 'this.form.submit()'}) %>
           </div>
         <% end %>
       </li>

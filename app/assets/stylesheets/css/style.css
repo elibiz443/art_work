@@ -74,7 +74,7 @@ button {
 #canvas {
   border: 0.3rem solid #154360;
   border-radius: 0.5rem;
-  margin: 4vw auto 1vw auto;
+  margin: 0 auto 1vw auto;
   overflow: hidden;
   position: relative;
 }
@@ -237,6 +237,9 @@ path {
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  text-decoration: inherit;
+  letter-spacing: inherit;
+  text-shadow: inherit;
 }
 
 .additional-tools {

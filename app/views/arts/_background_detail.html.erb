@@ -58,29 +58,24 @@
       <li class="top-btn">               
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <div style="display: flex;">
-            <%= f.text_field :content, value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).content, class: "form-control" %>
+            <%= f.text_field :content, value:@nav_art_text.content, class: "form-control" %>
             <button class="btn btn-primary" style="margin-left: 1vw;background-color: #34495E;border: none;">Edit Text</button>
           </div>
         <% end %>
       </li>
-      <li class="top-btn">
-        <label>Text Background:</label>
+      <li>
+        <h6>Curved Text:</h6>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
-          <div style="display: flex;">
-            <%= f.select(:background, ColorList.new.full_list, {}, {value: ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id).background, class: 'form-select', onchange: 'this.form.submit()'}) %>
-          </div>
+          <%= f.select(:curve, [["Disable", false], ["Enable", true]], {}, {value: @nav_art_text.curve, class: 'form-select', onchange: 'this.form.submit()'}) %>
+        <% end %>
+
+        <% if @nav_art_text.curve == true %>
+          <h6>View Box:</h6>
+          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+            <%= f.select(:view_box, [["Normal", "0 0 600 600"], ["Small", "0 0 1000 1000"], ["large", "50 20 400 400"]], {}, {value: @nav_art_text.view_box, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          <% end %>
         <% end %>
       </li>
-      <% if @text_background != "transparent" %>
-        <li class="padding-top">
-          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
-            <div style="display: flex;">
-              <%= f.hidden_field :background, :value => "transparent" %>
-              <button class="btn btn-primary" style="background-color: #CB4335;border: none;padding: 12px;font-size: 0.9rem !important;">Remove Text Background</button>
-            </div>
-          <% end %>
-        </li>
-      <% end %>
     <% end %>
   </div>
 </section>

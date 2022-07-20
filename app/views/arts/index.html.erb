@@ -2,6 +2,13 @@
   <section class="art-section">
     <div class="row" >
       <div class="col-12 col-md-8 image-section">
+        <div style="height: 70px;">
+          <div style="padding-top: 5px;text-align:center;width: 60%;margin: auto;">
+            <% flash.each do |type, msg| %>
+              <%= content_tag :div, msg, class: build_alert_classes(type) %>
+            <% end %>
+          </div>
+        </div>
         <%
           case @art.width
           when 1350
@@ -55,11 +62,6 @@
                 <button class="button-element" id="select_input2"><i class="fa-solid fa-pen-to-square"></i></button>
                 <button class="button-element" id="select_input3"><i class="fa-solid fa-icons"></i></button>
                 <button class="button-element" id="select_input4"><i class="fa-solid fa-images"></i></button>
-              </div>
-              <div style="padding: 10px;text-align:center;">
-                <% flash.each do |type, msg| %>
-                  <%= content_tag :div, msg, class: build_alert_classes(type) %>
-                <% end %>
               </div>
               <%= render 'background_detail' %>
               <%= render 'text_detail' %>

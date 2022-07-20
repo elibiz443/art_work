@@ -11,8 +11,8 @@ class ArtText < ApplicationRecord
   belongs_to :art
 
   validates :content, presence: true
-  validates :margin_top, inclusion: {in: 0..36, message: 'Maximum Limit Reached!'}
-  validates :margin_left, inclusion: {in: 0..58, message: 'Maximum Limit Reached!'}
+  validates :margin_top, inclusion: {in: -60..60, message: 'Maximum Limit Reached!'}
+  validates :margin_left, inclusion: {in: -60..60, message: 'Maximum Limit Reached!'}
 
 
   default_scope {order('art_texts.created_at ASC')}
