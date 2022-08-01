@@ -6,7 +6,7 @@ class CreateArtTexts < ActiveRecord::Migration[7.0]
       t.string :font_style, :default => "normal"
       t.integer :font_weight, :default => 400
       t.string :text_decoration, :default => "none"
-      t.string :size, :default => "2rem"
+      t.string :size, :default => "2em"
       t.string :color, :default => "rgba(21, 67, 96, 1.0)"
       t.string :color_opacity, :default => "1.0"
       t.string :background, :default => "transparent"

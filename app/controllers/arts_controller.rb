@@ -4,7 +4,7 @@ class ArtsController < ApplicationController
     @art = Art.find_by_id(1) 
     @art_texts = ArtText.where(art_id: 1)
     @selected_text = SelectedText.find_by_art_id(1) 
-    if @art_texts != []
+    if @art_texts.empty? == false
       @nav_art_text = ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id)
       @text_background = @nav_art_text.background
     end

@@ -1,86 +1,86 @@
 <% if  @art_texts != [] %>
-  <h6>Movement:</h6>
+  <h6 class="custom-font-size">Movement:</h6>
   <div class="navigation_button_container">
     <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
-      <%= f.hidden_field :margin_top, :value => @nav_art_text.margin_top - 2 %>
+      <%= f.hidden_field :margin_top, :value => @nav_art_text.margin_top - 1 %>
       <button type="submit" class="navigation_button_1">
         <i class="fa-solid fa-arrow-up"></i>
       </button>
     <% end %>
     <div class="side_elements">
       <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
-        <%= f.hidden_field :margin_left, :value => @nav_art_text.margin_left - 2 %>
+        <%= f.hidden_field :margin_left, :value => @nav_art_text.margin_left - 1 %>
         <button type="submit" class="navigation_button_2">
           <i class="fa-solid fa-arrow-left"></i>
         </button>
       <% end %>
       <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
-        <%= f.hidden_field :margin_left, :value => @nav_art_text.margin_left + 2 %>
+        <%= f.hidden_field :margin_left, :value => @nav_art_text.margin_left + 1 %>
         <button type="submit" class="navigation_button_3">
           <i class="fa-solid fa-arrow-right"></i>
         </button>
       <% end %>
     </div>
     <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
-      <%= f.hidden_field :margin_top, :value => @nav_art_text.margin_top + 2 %>
+      <%= f.hidden_field :margin_top, :value => @nav_art_text.margin_top + 1 %>
       <button type="submit" class="navigation_button_4">
         <i class="fa-solid fa-arrow-down"></i>
       </button>
     <% end %>
   </div>
   <div class="padding-top">
-    <h6>Rotate:</h6>
-    <div style="display: flex;justify-content: center;">
+    <h6 class="custom-font-size">Rotate:</h6>
+    <div class="rotate-section">
       <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
         <%= f.hidden_field :transform, :value => @nav_art_text.transform - 5 %>
-        <button  type="submit" class="btn btn-primary" style="background-color: #34495E;border: none;"><i class="fa-solid fa-rotate-left"></i></button>
+        <button  type="submit" class="btn btn-primary rotate-button"><i class="fa-solid fa-rotate-left"></i></button>
       <% end %>
       <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "form-button-element"} do |f| %>
         <%= f.hidden_field :transform, :value => @nav_art_text.transform + 5 %>
-        <button  type="submit" class="btn btn-primary" style="background-color: #34495E;border: none;"><i class="fa-solid fa-rotate-right"></i></button>
+        <button  type="submit" class="btn btn-primary rotate-button"><i class="fa-solid fa-rotate-right"></i></button>
       <% end %>
     </div>
   </div>
   <div class="additional-tools">
     <ul>
       <li class="top-btn">
-        <label>Text Size:</label>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Size:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <%= f.select(:size, FontSize.new.full_list, {}, {value: @nav_art_text.size, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Text Color:</label>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Color:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <%= f.select(:color, ColorList.new.full_list.sort, {}, {value: @nav_art_text.color, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Color Opacity:</label>
+        <label class="custom-font-size">Color<span class="hide_underscore">_</span>Opacity:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <%= f.select(:color_opacity, OpacityList.new.full_list, {}, {value: @nav_art_text.color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Font Family:</label>
+        <label class="custom-font-size">Font<span class="hide_underscore">_</span>Family:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
-          <%= f.select(:font_family, FontList.new.full_list.sort, {}, {value: @nav_art_text.font_family, class: 'form-select', onchange: 'this.form.submit()'}) %>
+          <%= f.select(:font_family, GoogleFonts.new.full_list.sort, {}, {value: @nav_art_text.font_family, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Font Style:</label>
+        <label class="custom-font-size">Font<span class="hide_underscore">_</span>Style:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <%= f.select(:font_style, [["normal"], ["italic"], ["oblique"]], {}, {value: @nav_art_text.font_style, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Font Weight:</label>
+        <label class="custom-font-size">Font<span class="hide_underscore">_</span>Weight:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <%= f.select(:font_weight, [["Normal", 400], ["Medium", 500], ["Bold", 800]], {}, {value: @nav_art_text.font_weight, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Text Decoration:</label>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Decoration:</label>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <%= f.select(:text_decoration, [["none"], ["overline"], ["line-through"], ["underline"], ["underline overline"]], {}, {value: @nav_art_text.text_decoration, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>

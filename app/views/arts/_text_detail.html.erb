@@ -1,92 +1,92 @@
 <section id="section2">
-  <% if ArtText.where(art_id: 1) != [] %>
+  <% if ArtText.where(art_id: 1).empty? == false %>
     <ul>
       <% if @nav_art_text.curve == false %>
         <li class="top-btn">
-          <label>Text Background:</label>
-          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <label class="custom-font-size">Text<span class="hide_underscore">_</span>Background:</label>
+          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
             <%= f.select(:background, ColorList.new.full_list, {}, {value: @nav_art_text.background, class: 'form-select', onchange: 'this.form.submit()'}) %>
           <% end %>
         </li>
         <% if @text_background != "transparent" %>
           <li class="padding-top">
-            <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+            <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
               <%= f.hidden_field :background, :value => "transparent" %>
               <button class="btn btn-primary" style="background-color: #CB4335;border: none;padding: 12px;font-size: 0.9rem !important;">Remove Text Background</button>
             <% end %>
           </li>
         <% end %>
         <li class="top-btn">
-          <label>Text Background Opacity:</label>
-          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <label class="custom-font-size">Text<span class="hide_underscore">_</span>Background<span class="hide_underscore">_</span>Opacity:</label>
+          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
             <%= f.select(:background_opacity, OpacityList.new.full_list, {}, {value: @nav_art_text.background_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
           <% end %>
         </li>
         <li class="top-btn">
-          <label>Text Background Padding:</label>
-          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <label class="custom-font-size">Text<span class="hide_underscore">_</span>Background<span class="hide_underscore">_</span>Padding:</label>
+          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
             <%= f.select(:background_padding, [["Small", 0.5], ["Normal", 1], ["Average", 1.5], ["Above-Average", 2], ["Big", 3], ["Huge", 4], ["Extra-Huge", 5]], {}, {value: @nav_art_text.background_padding, class: 'form-select', onchange: 'this.form.submit()'}) %>
           <% end %>
         </li>
         <li class="top-btn">
-          <label>Background Border Radius:</label>
-          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <label class="custom-font-size">Background<span class="hide_underscore">_</span>Border<span class="hide_underscore">_</span>Radius:</label>
+          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
             <%= f.select(:border_radius, BorderRadiusList.new.full_list, {}, {value: @nav_art_text.border_radius, class: 'form-select', onchange: 'this.form.submit()'}) %>
           <% end %>
         </li>
         <li class="top-btn">
-          <label>Line Height:</label>
-          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <label class="custom-font-size">Line<span class="hide_underscore">_</span>Height:</label>
+          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
             <%= f.select(:line_height, [["Normal", 3], ["Medium", 6], ["Big", 9], ["Extra-Big", 12]], {}, {value: @nav_art_text.line_height, class: 'form-select', onchange: 'this.form.submit()'}) %>
           <% end %>
         </li>
       <% end %>
       <li class="top-btn">
-        <label>Letter Spacing:</label>
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+        <label class="custom-font-size">Letter<span class="hide_underscore">_</span>Spacing:</label>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.select(:letter_spacing, [["Normal", 0.2], ["Medium", 0.4], ["Big", 0.6], ["Extra-Big", 0.8]], {}, {value: @nav_art_text.letter_spacing, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Text Shadow:</label>
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Shadow:</label>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.select(:text_shadow, [["None", 0], ["Normal", 2], ["Medium", 6], ["Heavy", 9]], {}, {value: @nav_art_text.text_shadow, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Text Shadow Colour:</label>
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Shadow<span class="hide_underscore">_</span>Colour:</label>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.select(:text_shadow_color, ColorList.new.full_list, {}, {value: @nav_art_text.text_shadow_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Text Shadow Colour Opacity:</label>
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Shadow<span class="hide_underscore">_</span>Colour<span class="hide_underscore">_</span>Opacity:</label>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.select(:text_shadow_color_opacity, OpacityList.new.full_list, {}, {value: @nav_art_text.text_shadow_color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
 
       <li class="top-btn">
-        <label>Text Outline Colour:</label>
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Outline<span class="hide_underscore">_</span>Colour:</label>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.select(:stroke_color, ColorList.new.full_list.sort, {}, {value: @nav_art_text.stroke_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Text Outline Opacity:</label>
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Outline<span class="hide_underscore">_</span>Opacity:</label>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.select(:stroke_color_opacity, OpacityList.new.full_list, {}, {value: @nav_art_text.stroke_color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <li class="top-btn">
-        <label>Text Outline Size:</label>
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+        <label class="custom-font-size">Text<span class="hide_underscore">_</span>Outline<span class="hide_underscore">_</span>Size:</label>
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.select(:stroke_width, [["Normal", 1], ["Average", 2], ["Above-Average", 3], ["Big", 4], ["Extra-Big", 5]], {}, {value: @nav_art_text.stroke_width, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
       </li>
       <% if @nav_art_text.stroke_color != "transparent" %>
         <li class="padding-top">
-          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+          <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
             <%= f.hidden_field :stroke_color, :value => "transparent" %>
             <button class="btn btn-primary" style="background-color: #CB4335;border: none;padding: 12px;font-size: 0.9rem !important;">Remove Text Outline</button>
           <% end %>

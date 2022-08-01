@@ -32,6 +32,14 @@ class ArtTextsController < ApplicationController
     redirect_to "/"
   end
 
+  def destroy
+    @art_text = ArtText.find_by_id((SelectedText.find_by_art_id(1)).art_text_id)
+    @art_text.destroy
+    SelectedText.find_by_art_id(1).update(art_text_id: ArtText.where(art_id: 1).collect{|art_id| art_id.id}.min)
+    flash[:alert] =  'Text Deleted!'
+    redirect_to '/'
+  end
+
   private
 
   def art_text_params

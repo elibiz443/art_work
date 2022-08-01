@@ -1,18 +1,18 @@
 <section id="section1">
   <li class="top-btn">
-    <label>Background Color:</label>
+    <label class="custom-font-size">Background<span class="hide_underscore">_</span>Color:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
       <%= f.select(:background_color, ColorList.new.full_list.sort, {}, {value: @art.background_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
   </li>
   <li class="top-btn">
-    <label>Background Color Opacity:</label>
+    <label class="custom-font-size">Background<span class="hide_underscore">_</span>Color<span class="hide_underscore">_</span>Opacity:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
       <%= f.select(:background_color_opacity, OpacityList.new.full_list, {}, {value: @art.background_color_opacity, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
   </li>
   <li class="top-btn">
-    <label>Radial Gradient:</label>
+    <label class="custom-font-size">Radial<span class="hide_underscore">_</span>Gradient:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
       <%= f.select(:radial_gradient, RadialList.new.full_list, {}, {value: @art.radial_gradient, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
@@ -20,7 +20,7 @@
 
   <% if @art.radial_gradient != "none" %>
     <li class="top-btn">
-      <label>Radial Gradient Color:</label>
+      <label class="custom-font-size">Radial<span class="hide_underscore">_</span>Gradient<span class="hide_underscore">_</span>Color:</label>
       <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
         <%= f.select(:radial_gradient_color, ColorList.new.full_list.sort, {}, {value: @art.radial_gradient_color, class: 'form-select', onchange: 'this.form.submit()'}) %>
       <% end %>
@@ -28,7 +28,7 @@
   <% end %>
 
   <li class="top-btn" style="border-bottom: 2px solid #B2BABB;padding-bottom: 20px;">
-    <label for="cars">Size:</label>
+    <label class="custom-font-size">Size:</label>
     <%= form_for @art, url: {action: "update"}, html: {class: "select-dropdown"} do |f| %>
       <%= f.select(:width, SizeList.new.full_list, {}, {value: @art.width, class: 'form-select', onchange: 'this.form.submit()'}) %>
     <% end %>
@@ -36,31 +36,32 @@
 
   <div class="additional-tools">
     <li class="top-btn">                 
-      <%= form_with model: ArtText.new, html: {class: "input-form", autocomplete: "off"} do |f| %>
+      <%= form_with model: ArtText.new do |f| %>
         <%= f.text_area :content, placeholder: "Add Text", class: "form-control", autocomplete: false %>
         <%= f.hidden_field :art_id, value: 1 %>
-        <button class="btn btn-primary" style="background-color: #34495E;border: none;margin-top: 10px;padding: 6px 30px 6px 30px;font-size: 0.8rem !important;overflow: hidden;">
-          <i class="fa-solid fa-font">&ensp;</i>Add Text
+        <button class="btn btn-primary custom_edit_button">
+          <i class="fa-solid fa-font">&ensp;</i>Add<span class="hide_underscore">_</span>Text
         </button>
       <% end %>
     </li>
-    <% if ArtText.where(art_id: 1) != [] %>
-      <li class="top-btn">               
-        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
+    <% if ArtText.where(art_id: 1).empty? == false %>
+      <li class="padding-top">               
+        <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch do |f| %>
           <%= f.text_area :content, value:@nav_art_text.content, class: "form-control" %>
-          <button class="btn btn-primary" style="background-color: #34495E;border: none;margin-top: 10px;padding: 6px 30px 6px 30px;font-size: 0.8rem !important;overflow: hidden;">
-            <i class="fa-solid fa-square-pen">&ensp;</i>Edit Text
+          <button class="btn btn-primary custom_edit_button">
+            <i class="fa-solid fa-square-pen">&ensp;</i>Edit<span class="hide_underscore">_</span>Text
           </button>
+          <%= button_to ' Delete', "/art_texts/index", method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-primary custom_delete_button" %>
         <% end %>
       </li>
-      <li>
-        <h6>Curved Text:</h6>
+      <li class="padding-top">
+        <h6 class="custom-font-size">Curved<span class="hide_underscore">_</span>Text:</h6>
         <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
           <%= f.select(:curve, [["Disable", false], ["Enable", true]], {}, {value: @nav_art_text.curve, class: 'form-select', onchange: 'this.form.submit()'}) %>
         <% end %>
 
         <% if @nav_art_text.curve == true %>
-          <h6>View Box:</h6>
+          <h6 class="custom-font-size padding-top">View<span class="hide_underscore">_</span>Box:</h6>
           <%= form_for @nav_art_text, url: "/art_texts/index", method: :patch, html: {class: "select-dropdown"} do |f| %>
             <%= f.select(:view_box, [["Normal", "0 0 600 600"], ["Small", "0 0 1000 1000"], ["large", "50 20 400 400"]], {}, {value: @nav_art_text.view_box, class: 'form-select', onchange: 'this.form.submit()'}) %>
           <% end %>

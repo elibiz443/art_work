@@ -2,39 +2,53 @@
   <section class="art-section">
     <div class="row" >
       <div class="col-12 col-md-8 image-section">
-        <div style="height: 70px;">
-          <div style="padding-top: 5px;text-align:center;width: 60%;margin: auto;">
-            <% flash.each do |type, msg| %>
-              <%= content_tag :div, msg, class: build_alert_classes(type) %>
-            <% end %>
+        <div class="sub-image-section">
+          <div class="row">
+            <div class="col">
+              <p class="top-info">
+                <i>
+                  <b>* <u>N/B:</u></b>&ensp;Click<span class="hide_underscore">_</span>On<span class="hide_underscore">_</span>Text<span class="hide_underscore">_</span>To<span class="hide_underscore">_</span>Edit
+                </i>
+              </p>
+            </div>
+            <div class="col top-notification">
+              <% flash.each do |type, msg| %>
+                <%= content_tag :div, msg, class: build_alert_classes(type) %>
+              <% end %>
+            </div>
+            <div class="col">
+              <button id="btnSave" class="btn btn-primary download_button">
+                <i class="fa-solid fa-download">&ensp;</i>Download<span class="hide_underscore">_</span>Picture
+              </button>
+            </div>
           </div>
         </div>
         <%
           case @art.width
-          when 1350
-            my_width = 60
-            my_height = 40
-          when 1050
-            my_width = 45
-            my_height = 30
-          when 750
-            my_width = 30
-            my_height = 20
+          when 1176
+            my_width = 64.017
+            my_height = 44.039
+          when 1000
+            my_width = 54.437
+            my_height = 37.452
+          when 850
+            my_width = 46.271
+            my_height = 31.791
           when 900
-            my_width = 40
-            my_height = 40
+            my_width = 48.993
+            my_height = 48.993
           when 700
-            my_width = 30
-            my_height = 30
+            my_width = 38.106
+            my_height = 38.106
           when 500
-            my_width = 20
-            my_height = 20
+            my_width = 27.218
+            my_height = 27.218
           else
-            my_width = 60
-            my_height = 40
+            my_width = 64.017
+            my_height = 44.039
           end
         %>
-        <div id="canvas"
+        <div id="img-cont"
           <% if @art.radial_gradient == "none" %>
             style="background-color: <%= @art.background_color %>;width: <%= my_width %>vw; height: <%= my_height %>vw;"
           <% elsif @art.radial_gradient == "centered" %>
@@ -48,7 +62,6 @@
             <%= render 'text_content' %>
           </div>
         </div>
-        <p style="padding-left: 80px;font-size: 1rem;"><i><u><b>* N/B:</b></u> Click On Text To Edit</i></p>
       </div>
       <div class="col-12 col-md-4 assets-section">
         <div class="row info-section">
@@ -74,3 +87,40 @@
     </div>
   </section>
 </div>
+
+    
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+  $("#btnSave").click(function () {
+    let myimg = $("#img-cont")[0]
+    domtoimage.toBlob(myimg,{
+      height: "<%= @art.height %>",
+      width: "<%= @art.width %>"
+    })
+    .then(dataUrl => {
+    // Safari hack https://github.com/tsayen/dom-to-image/issues/343
+    domtoimage
+      .toBlob(myimg,{
+        //height and width for safari
+        height: "<%= @art.height %>",
+        width: "<%= @art.width %>"
+      })
+      .then(dataUrl2 => {
+        window.saveAs(dataUrl2, 'myimage.png');
+      });
+    });
+  });
+
+  // copy function to copy credit text 
+  function copy(selector){
+    let $temp = $("<div>");
+    $("body").append($temp);
+    $temp.attr("contenteditable", true)
+      .html($(selector).html()).select()
+      .on("focus", function() { document.execCommand('selectAll',false,null); })
+      .focus();
+    document.execCommand("copy");
+    $temp.remove();
+  }
+</script>

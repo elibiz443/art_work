@@ -15,7 +15,7 @@ class Art < ApplicationRecord
     if self.width == 900 || self.width == 700 || self.width == 500
       self.height = self.width
     else
-      self.height = self.width.to_i / 1.5
+      self.height = (self.width.to_i / 1.453).to_i
     end
   end
 

@@ -56,7 +56,7 @@ button {
   text-align: center;
   border-radius: 0.4rem;
   padding: 1vw 0 2.5vw 0;
-  height: 88vh;
+  height: 90vh;
 }
 
 .btn {
@@ -65,16 +65,21 @@ button {
 
 .image-section {
   Background: #F4F6F7;
+  padding: 0 0 2vw 1.8vw;
+}
+
+.sub-image-section {
+  height: 70px;
 }
 
 .assets-section {
   border-bottom: 5px solid #F4F6F7;
 }
 
-#canvas {
-  border: 0.3rem solid #154360;
-  border-radius: 0.5rem;
-  margin: 0 auto 1vw auto;
+#img-cont {
+  /*border: 0.3rem solid #154360;*/
+  /*border-radius: 0.5rem;*/
+  margin: 0;
   overflow: hidden;
   position: relative;
 }
@@ -83,11 +88,6 @@ button {
   position: absolute;
   white-space: nowrap;
   z-index: 1;
-}
-
-.select-dropdown {
-  margin: 0 auto 0.5vw auto;
-  width: 60%;
 }
 
 .button-section {
@@ -248,4 +248,82 @@ path {
 
 .padding-top {
   padding-top: 10px;
+}
+
+.custom_delete_button {
+  background-color: #CD6155;
+  border: none;
+  margin-top: 10px;
+  padding: 6px 30px 6px 30px;
+  font-size: calc(0.5em + 0.5vw) !important;
+  overflow: hidden;
+}
+
+.custom_delete_button::before {
+  content: "\274E";
+}
+
+.custom_delete_button:hover {
+  background-color: #E6B0AA;
+}
+
+.custom_edit_button {
+  background-color: #34495E;
+  border: none;
+  margin-top: 10px;
+  padding: 6px 30px 6px 30px;
+  font-size: calc(0.5em + 0.5vw) !important;
+  overflow: hidden;
+}
+
+.custom_edit_button:hover {
+  background-color: #5D6D7E;
+}
+
+.download_button {
+  background-color: #1A5276;
+  border: none;
+  padding: 12px;
+  font-size: calc(0.5em + 0.5vw) !important;
+  float: right;
+  margin: 0.8vw 32px 0 0;
+}
+
+.download_button:hover {
+  background-color: #808B96;
+}
+
+.hide_underscore {
+  visibility: hidden;
+}
+
+.top-info {
+  padding: 35px 0 0 1.5vw;
+  font-size: calc(0.5em + 0.5vw);
+}
+
+.top-notification {
+  padding-top: 5px;
+  text-align:center;
+  width: 60%;
+  margin: auto;
+  font-size: calc(0.5em + 0.5vw);
+}
+
+.custom-font-size {
+  font-size: calc(0.5em + 0.5vw);
+}
+
+.rotate-section {
+  display: flex;
+  justify-content: center;
+}
+
+.rotate-button {
+  background-color: #34495E;
+  border: none;
+}
+
+.rotate-button:hover {
+  background-color: #9849C4;
 }

@@ -7,7 +7,7 @@
         font-family: <%= art_text.font_family %>;
         font-style: <%= art_text.font_style %>;
         font-weight: <%= art_text.font_weight %>;
-        font-size: <%= art_text.size %>;
+        font-size: calc(<%= art_text.size %> + 0.5vw);
         color: <%= art_text.color %>;
         -webkit-text-stroke: <%= art_text.stroke_width %>px <%= art_text.stroke_color %>;
         background-color: <%= art_text.background %>;
@@ -36,7 +36,7 @@
             font-style: <%= art_text.font_style %>;
             font-weight: <%= art_text.font_weight %>;
             text-decoration: <%= art_text.text_decoration %>;
-            font-size: <%= art_text.size %>;
+            font-size: calc(<%= art_text.size %> + 0.9vw);
             fill: <%= art_text.color %>;
             stroke: <%= art_text.stroke_color %>;
             stroke-width: <%= art_text.stroke_width %>;
